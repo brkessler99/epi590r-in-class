@@ -64,9 +64,13 @@ tbl_summary(
 	include = c(sex_cat,region_cat,race_eth_cat,income,starts_with("sleep")),
 	statistic = list(sleep_wkdy ~ "min = {min}, max = {max}",
 									 sleep_wknd ~ "min = {min}, max = {max}",
-									 income ~ "{p10}, {p90}")) %>%
-	add_overall(col_label = "Overall") %>%
+									 income ~ "{p10}, {p90}"),
+	digits = list(income ~ c(3,3),
+								sleep_wkdy ~ c(1,1),
+								sleep_wknd ~ c(1,1))) %>%
+	add_overall(col_label = "**Overall**") %>%
 	add_p(test = list(all_continuous() ~ "t.test",
-				all_categorical() ~ "chisq.test"))
-
-
+				all_categorical() ~ "chisq.test")) %>%
+	modify_table_styling(columns = label,
+		rows = label == "race_eth_cat",
+		footnote = "https://www.nlsinfo.org/content/cohorts/nlsy79/topical-guide/household/race-ethnicity-immigration-data")

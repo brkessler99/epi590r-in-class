@@ -1,0 +1,19 @@
+---
+title: "My New Quarto Doc"
+author: "Ben Kessler"
+format: html
+editor: visual
+---
+
+# H1
+## H2
+### H3
+
+This text is **bold**
+This text is *italic*
+
+```{r}
+cars <- mtcars
+mean(cars$mpg)
+```
+
